@@ -13,7 +13,7 @@ No Absen : 16
 
 |Weeks           |PROJECTS                         |LINKS                        |
 |----------------|---------------------------------|-----------------------------|
-|Minggu 1        |`'Instalasi Flutter dan Praktikum 1 Membuat UI Sederhana'`          |
+|Minggu 1        |`'Instalasi Flutter dan Praktikum 1 Membuat UI Sederhana'`          |https://github.com/bintangsholu21/pemrograman-mobile/tree/main/Minggu%201
 |minggu 2        | |                             
 |minggu 3        | |                               
 |minggu 4        |`'Collection, Records, Fungsi'`  |                          
