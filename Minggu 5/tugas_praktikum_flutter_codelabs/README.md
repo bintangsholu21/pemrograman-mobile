@@ -1175,3 +1175,56 @@ class _MyHomePageState extends State<MyHomePage> {
 
 Sekarang aplikasi Anda merespons lingkungannya, seperti ukuran layar, orientasi, dan platform. Dengan kata lain, aplikasi Anda sudah responsif.
 <br><img src='img/tgs47.png' width='40%'><br>
+
+---
+---
+
+## 8. Menambahkan halaman baru
+
+Berikut ini hanyalah salah satu cara untuk menerapkan halaman favorit. Bagaimana halaman ini diterapkan (semoga) akan menginspirasi Anda untuk bermain dengan kode—meningkatkan UI dan membuat UI sesuai keinginan Anda.
+
+Berikut class FavoritesPage baru:
+
+*lib/main.dart*
+
+```
+class FavoritesPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    var appState = context.watch<MyAppState>();
+
+    if (appState.favorites.isEmpty) {
+      return Center(
+        child: Text('No favorites yet.'),
+      );
+    }
+
+    return ListView(
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(20),
+          child: Text('You have '
+              '${appState.favorites.length} favorites:'),
+        ),
+        for (var pair in appState.favorites)
+          ListTile(
+            leading: Icon(Icons.favorite),
+            title: Text(pair.asLowerCase),
+          ),
+      ],
+    );
+  }
+}
+```
+
+Inilah fungsi widget tersebut:
+
+* Widget ini mendapatkan status aplikasi saat ini.
+* Jika daftar favorit kosong, pesan terpusat berikut akan ditampilkan: No favorites yet*.*
+* Jika tidak, daftar (dapat di-scroll) akan ditampilkan.
+* Daftar tersebut dimulai dengan ringkasan (misalnya, You have 5 favorites*.*).
+* Kode tersebut kemudian melakukan iterasi di seluruh favorit dan membuat widget ListTile untuk masing-masing favorit.
+* Yang tersisa sekarang adalah mengganti widget Placeholder dengan FavoritesPage. Dan selesai!
+
+
+<br><img src='img/tgs48.png' width='40%'><br>
