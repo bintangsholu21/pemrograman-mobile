@@ -7,7 +7,7 @@
 * No Absen    : 16
 * NIM         : 2141720101
 
-Github Link https://github.com/bintangsholu21/flutter.git
+Github Link https://github.com/bintangsholu21/pemrograman-mobile
 
 ---
 
@@ -497,13 +497,15 @@ Kedua baris baru ini melakukan banyak hal:
 
 Kini, kartu telah diwarnai dengan warna primer aplikasi:
 
-
+<img src='img/tgs20.png' width='30%'><br>
+<img src='img/tgs21.png' width='30%'><br>
 
 Anda dapat mengubah warna ini serta skema warna keseluruhan aplikasi dengan men-scroll ke atas ke MyApp dan mengubah warna seed untuk ColorScheme di sana.
 
 **Tips :** Class `Colors` Flutter memberikan akses mudah ke palet warna pilihan kepada Anda, seperti `Colors.deepOrange` atau `Colors.red`. Namun, pastinya Anda dapat memilih warna apa saja. Misalnya, untuk menentukan warna hijau murni dengan opasitas penuh, gunakan `Color.fromRGBO(0, 255, 0, 1.0)`. Jika Anda adalah penggemar angka heksadesimal, selalu ada `Color(0xFF00FF00)`.
 
-
+<img src='img/tgs22.png' width='30%'><br>
+<img src='img/tgs23.png' width='30%'><br>
 
 Perhatikan bagaimana warna berubah dengan halus. Perubahan ini disebut `animasi implisit`. Banyak widget Flutter akan berinterpolasi antarnilai dengan lancar agar UI tidak hanya "berpindah" antarstatus.
 
@@ -535,7 +537,7 @@ Kartu tersebut masih memiliki masalah: ukuran teks terlalu kecil dan warnanya me
     );
   }
 ```
-
+<img src='img/tgs24.png' width='30%'><br>
 ### **Meningkatkan aksesibilitas**
 
 *lib/main.dart*
@@ -563,6 +565,8 @@ Kartu tersebut masih memiliki masalah: ukuran teks terlalu kecil dan warnanya me
     );
   }
   ```
+<img src='img/tgs25.png' width='30%'><br>
+
 
 ### **Menempatkan UI di tengah**
 
@@ -596,7 +600,25 @@ class MyHomePage extends StatelessWidget {
   }
 }
 ```
+<img src='img/tgs26.png' width='30%'><br>
 
+Turunan UI telah ditempatkan di tengah pada sumbu silang kolom (dengan kata lain, turunan UI telah ditempatkan di tengah secara horizontal). Namun, Column itu sendiri tidak ditempatkan di tengah dalam Scaffold. Kita dapat memverifikasi ini menggunakan Widget Inspector.
+
+<img src='img/tgs27.png' width='40%'><br>
+
+Widget Inspector itu sendiri berada di luar cakupan codelab ini, tetapi Anda dapat melihat bahwa ketika Column ditandai, kode ini tidak menghabiskan keseluruhan lebar aplikasi. Kode ini hanya menghabiskan ruang horizontal sebanyak yang diperlukan oleh turunan UI.
+
+Anda dapat menempatkan kolom itu sendiri di tengah. Letakkan kursor Anda di Column, buka menu Refactor (dengan Ctrl+. atau Cmd+.), lalu pilih Wrap with Center.
+
+<img src='img/tgs28.png' width='40%'><br>
+<img src='img/tgs29.png' width='40%'><br>
+<img src='img/tgs30.png' width='40%'><br>
+
+
+Jika mau, Anda dapat menyesuaikan tampilan ini lebih lanjut.
+
+* Anda dapat menghapus widget Text di atas BigCard. Dapat dipastikan bahwa teks deskriptif ("Ide LUAR BIASA acak:") tidak lagi diperlukan karena UI tersebut sudah jelas meskipun tanpa teks deskriptif. Selain itu, dengan begitu UI terlihat lebih bersih.
+* Anda juga dapat menambahkan widget SizedBox(height: 10) di antara BigCard dan ElevatedButton. Dengan begitu, ada sedikit pemisah di antara kedua widget tersebut. Widget SizedBox hanya mengambil ruang dan tidak merender apa pun dengan sendirinya. Widget ini biasa digunakan untuk membuat "jarak" visual.
 
 Dengan perubahan opsional, MyHomePage mencakup kode berikut:
 
@@ -632,3 +654,4 @@ class MyHomePage extends StatelessWidget {
 
 Aplikasinya akan terlihat seperti berikut:
 
+<img src='img/tgs31.png' width='40%'><br>
