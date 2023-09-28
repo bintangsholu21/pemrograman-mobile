@@ -355,3 +355,280 @@ Simpan dan uji coba aplikasi sekarang. Aplikasi akan menghasilkan pasangan kata 
 <img src='img\tgs11.png' width='20%'>
 
 Pada bagian berikutnya, Anda akan memperindah tampilan antarmuka pengguna.
+
+---
+---
+
+## 5. Memperindah tampilan aplikasi
+
+### **Mengekstrak widget**
+
+Baris yang bertanggung jawab untuk menampilkan pasangan kata saat ini kini tampak seperti berikut: `` Text(appState.current.asLowerCase)``. Untuk mengubahnya menjadi sesuatu yang lebih kompleks, disarankan untuk mengekstrak baris ini ke widget terpisah. Memiliki beberapa widget untuk beberapa bagian logis dari UI Anda adalah cara penting dalam mengelola kompleksitas pada Flutter.
+
+Flutter menyediakan pembantu pemfaktoran ulang untuk mengekstrak widget, tetapi sebelum Anda menggunakannya, pastikan bahwa baris yang akan diekstrak hanya mengakses yang diperlukan. Sekarang baris tersebut mengakses ``appState``, tetapi sebenarnya baris tersebut hanya perlu mengetahui apa pasangan kata saat ini.
+
+Oleh karena itu, tulis ulang widget ``MyHomePage`` sebagai berikut:
+
+*lib/main.dart*
+
+```
+class MyHomePage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    var appState = context.watch<MyAppState>();
+    var pair = appState.current;                 // ← Add this.
+
+    return Scaffold(
+      body: Column(
+        children: [
+          Text('A random AWESOME idea:'),
+          Text(pair.asLowerCase),                // ← Change to this.
+          ElevatedButton(
+            onPressed: () {
+              appState.getNext();
+            },
+            child: Text('Next'),
+          ),
+        ],
+      ),
+    );
+  }
+}
+```
+
+Bagus. Widget `Text` tidak lagi merujuk kepada keseluruhan appState.
+
+Sekarang, panggil menu **Refactor**. Pada VS Code, Anda melakukan ini melalui salah satu dari dua cara:
+
+1. Klik kanan potongan kode yang ingin Anda faktorkan ulang (dalam hal ini `Text`) dan pilih Refactor... dari menu drop-down,
+
+ATAU
+
+2. Pindahkan kursor Anda ke potongan kode yang ingin Anda faktorkan ulang (dalam hal ini, `Text`), lalu tekan `Ctrl+`. (Win/Linux) atau Cmd+. (Mac).
+
+<img src='img/tgs12.png' width='35%'>
+
+<img src='img/tgs13.png' width='35%'>
+
+Pada menu *Refactor*, pilih *Extract Widget*. Tetapkan nama, seperti `BigCard`, lalu klik Enter.
+
+Tindakan ini secara otomatis membuat class baru, `BigCard`, di akhir file saat ini. Class tersebut akan terlihat seperti berikut:
+
+*lib/main.dart*
+
+
+```
+class BigCard extends StatelessWidget {
+  const BigCard({
+    super.key,
+    required this.pair,
+  });
+
+  final WordPair pair;
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(pair.asLowerCase);
+  }
+}
+```
+<img src='img/tgs14.png' width='30%'><br>
+
+Perhatikan bagaimana aplikasi tetap berjalan meskipun pemfaktoran ulang sedang berlangsung.
+
+### **Menambahkan Kartu**
+
+Sekarang saatnya membuat widget baru ini menjadi UI tebal yang kita bayangkan di awal bagian ini.
+
+Temukan class `BigCard` dan metode `build()` yang berada di dalamnya. Sama seperti sebelumnya, panggil menu **Refactor** pada widget `Text`. Namun, kali ini Anda tidak akan mengekstrak widget.
+
+Sebagai gantinya, pilih **Wrap with Padding**. Tindakan ini menciptakan widget induk baru di sekitar widget Text bernama `Padding`. Setelah menyimpannya, Anda akan melihat bahwa kata acak tersebut telah memiliki ruang yang lebih luas.
+
+<img src='img/tgs15.png' width='30%'><br>
+<img src='img/tgs16.png' width='30%'><br>
+
+Tingkatkan padding dari nilai default `8.0`. Misalnya, gunakan `20` untuk padding yang lebih luas.
+
+
+
+#### **Catatan:** Flutter menggunakan Komposisi, bukan Pewarisan, kapan pun tersedia. Di sini, padding tidak menjadi atribut dari Text, melainkan sebuah widget!
+
+#### Dengan begitu, widget dapat fokus pada tanggung jawab masing-masing, dan Anda, sebagai developer, memiliki kebebasan penuh mengenai cara menyusun UI. Misalnya, Anda dapat menggunakan widget Padding untuk memberikan padding pada teks, gambar, tombol, widget kustom Anda sendiri, atau keseluruhan aplikasi. Widget tidak peduli dengan apa yang dikemas.
+
+
+Berikutnya, mari kita naik satu tingkat lebih tinggi. Tempatkan kursor Anda pada widget `Padding`, buka menu **Refactor**, lalu pilih **Wrap with widget**....
+
+Tindakan ini memungkinkan Anda untuk menentukan widget induk. Ketik "Card" dan tekan **Enter**.
+
+<img src='img/tgs17.png' width='30%'><br>
+<img src='img/tgs18.png' width='30%'><br>
+
+Kode ini menggabungkan widget `Padding`, dan juga `Text`, dengan widget `Card`.
+
+<img src='img/tgs19.png' width='30%'><br>
+
+### **Tema dan gaya**
+
+Untuk membuat kartu menjadi lebih menarik, beri warna yang lebih kaya pada kartu tersebut. Karena ada baiknya untuk menjaga skema warna yang konsisten, gunakan `Theme` aplikasi untuk memilih warna.
+
+Buat perubahan berikut untuk metode `build() BigCard`.
+
+*lib/main.dart*
+
+```
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);       // ← Add this.
+
+    return Card(
+      color: theme.colorScheme.primary,    // ← And also this.
+      child: Padding(
+        padding: const EdgeInsets.all(20),
+        child: Text(pair.asLowerCase),
+      ),
+    );
+  }
+```
+
+Kedua baris baru ini melakukan banyak hal:
+
+* Pertama, kode ini meminta tema aplikasi saat ini dengan Theme.of(context).
+* Kemudian, kode ini menentukan warna kartu agar sama dengan properti colorScheme dari tema. Skema warna menampung banyak warna, dan primary adalah warna aplikasi yang paling terlihat dan mencolok.
+
+Kini, kartu telah diwarnai dengan warna primer aplikasi:
+
+
+
+Anda dapat mengubah warna ini serta skema warna keseluruhan aplikasi dengan men-scroll ke atas ke MyApp dan mengubah warna seed untuk ColorScheme di sana.
+
+**Tips :** Class `Colors` Flutter memberikan akses mudah ke palet warna pilihan kepada Anda, seperti `Colors.deepOrange` atau `Colors.red`. Namun, pastinya Anda dapat memilih warna apa saja. Misalnya, untuk menentukan warna hijau murni dengan opasitas penuh, gunakan `Color.fromRGBO(0, 255, 0, 1.0)`. Jika Anda adalah penggemar angka heksadesimal, selalu ada `Color(0xFF00FF00)`.
+
+
+
+Perhatikan bagaimana warna berubah dengan halus. Perubahan ini disebut `animasi implisit`. Banyak widget Flutter akan berinterpolasi antarnilai dengan lancar agar UI tidak hanya "berpindah" antarstatus.
+
+Tombol timbul di bawah kartu juga berubah warna. Itulah kelebihan dalam menggunakan ``Theme`` seluruh aplikasi dibandingkan dengan nilai hard-code.
+
+
+### **TextTheme**
+
+Kartu tersebut masih memiliki masalah: ukuran teks terlalu kecil dan warnanya membuat teks sulit dibaca. Untuk memperbaiki masalah ini, buat perubahan berikut pada metode build() BigCard.
+
+*lib/main.dart*
+
+```
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    // ↓ Add this.
+    final style = theme.textTheme.displayMedium!.copyWith(
+      color: theme.colorScheme.onPrimary,
+    );
+
+    return Card(
+      color: theme.colorScheme.primary,
+      child: Padding(
+        padding: const EdgeInsets.all(20),
+        // ↓ Change this line.
+        child: Text(pair.asLowerCase, style: style),
+      ),
+    );
+  }
+```
+
+### **Meningkatkan aksesibilitas**
+
+*lib/main.dart*
+
+```
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final style = theme.textTheme.displayMedium!.copyWith(
+      color: theme.colorScheme.onPrimary,
+    );
+
+    return Card(
+      color: theme.colorScheme.primary,
+      child: Padding(
+        padding: const EdgeInsets.all(20),
+
+        // ↓ Make the following change.
+        child: Text(
+          pair.asLowerCase,
+          style: style,
+          semanticsLabel: "${pair.first} ${pair.second}",
+        ),
+      ),
+    );
+  }
+  ```
+
+### **Menempatkan UI di tengah**
+
+Pertama, ingatlah bahwa BigCard adalah bagian dari Column. Secara default, kolom menggabungkan turunan kolom di bagian atas, tetapi kita dapat mengganti ini dengan mudah. Buka metode build() MyHomePage, dan buat perubahan berikut:
+
+*lib/main.dart*
+
+
+```
+class MyHomePage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    var appState = context.watch<MyAppState>();
+    var pair = appState.current;
+
+    return Scaffold(
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,  // ← Add this.
+        children: [
+          Text('A random AWESOME idea:'),
+          BigCard(pair: pair),
+          ElevatedButton(
+            onPressed: () {
+              appState.getNext();
+            },
+            child: Text('Next'),
+          ),
+        ],
+      ),
+    );
+  }
+}
+```
+
+
+Dengan perubahan opsional, MyHomePage mencakup kode berikut:
+
+*lib/main.dart*
+
+```
+class MyHomePage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    var appState = context.watch<MyAppState>();
+    var pair = appState.current;
+
+    return Scaffold(
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            BigCard(pair: pair),
+            SizedBox(height: 10),
+            ElevatedButton(
+              onPressed: () {
+                appState.getNext();
+              },
+              child: Text('Next'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+```
+
+Aplikasinya akan terlihat seperti berikut:
+
