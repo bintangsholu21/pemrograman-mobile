@@ -39,14 +39,14 @@ class MyApp extends StatelessWidget {
                 Container(
                   padding: const EdgeInsets.only(bottom: 8.0),
                   child: const Text(
-                    'Wisata Gunung di Batu',
+                    'Monumen Ringin Contong',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                 ),
                 Text(
-                  'Batu, Malang, Indonesia',
+                  'Jl. KH. Wahid Hasyim No.1, Jombang, Kec. Jombang, Kabupaten Jombang, Jawa Timur 61415',
                   style: TextStyle(
                     color: Colors.grey[500],
                   ),
@@ -58,7 +58,7 @@ class MyApp extends StatelessWidget {
             Icons.star,
             color: Colors.red,
           ),
-          const Text('41'),
+          const Text('50'),
         ],
       ),
     );
@@ -77,12 +77,7 @@ class MyApp extends StatelessWidget {
     Widget textSection = Container(
       padding: const EdgeInsets.all(32),
       child: const Text(
-        'Carilah teks di internet yang sesuai '
-        'dengan foto atau tempat wisata yang ingin '
-        'Anda tampilkan. '
-        'Tambahkan nama dan NIM Anda sebagai '
-        'identitas hasil pekerjaan Anda. '
-        'Selamat mengerjakan 🙂.',
+        'Menara air Belanda dengan struktur mirip kerucut yang dibangun tahun 1929 & kini menjadi monumen simbolis.',
         softWrap: true,
       ),
     );
@@ -95,9 +90,15 @@ class MyApp extends StatelessWidget {
         ),
         body: Column(
           children: [
+            Image.asset(
+              '../img/ringin-contong.jpeg',
+              width: 600,
+              height: 240,
+              fit: BoxFit.cover,
+            ),
             titleSection,
-            textSection,
             buttonSection,
+            textSection,
             // Tambahkan widget lain di sini sesuai kebutuhan aplikasi Anda.
           ],
         ),
