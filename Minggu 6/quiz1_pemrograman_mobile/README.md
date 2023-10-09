@@ -104,7 +104,7 @@ Penjelasan :<br>
 ---
 
 ### Soal 6
-<img src='img\soal6.png' width='35%'><br>
+<img src='img\Soal6.png' width='35%'><br>
 
 Output :
 
