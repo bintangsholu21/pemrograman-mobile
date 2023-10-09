@@ -17,4 +17,6 @@ No Absen : 16
 |Week 2        | |                             
 |Week 3        |`'Dart Basic'` | https://github.com/bintangsholu21/pemrograman-mobile/tree/main/Minggu%203/dart_application_1                   
 |Week 4        |`'Collection, Records, Fungsi'`  | https://github.com/bintangsholu21/pemrograman-mobile/tree/main/Minggu%204/dart_collection                         
-|Week 5        |`'Flutter Fundamental - Bagian 1'`   | https://github.com/bintangsholu21/pemrograman-mobile/tree/main/Minggu%205                            
+|Week 5        |`'Flutter Fundamental - Bagian 1'`   | https://github.com/bintangsholu21/pemrograman-mobile/tree/main/Minggu%205 
+|Week 6        |`'Quiz 1'`   | https://github.com/bintangsholu21/pemrograman-mobile/tree/main/Minggu%206/quiz1_pemrograman_mobile
+|Week 7        |`'Flutter - Layout dan Navigasi'`   | https://github.com/bintangsholu21/pemrograman-mobile/tree/main/Minggu%207/flutter_layout_dan_navigasi
