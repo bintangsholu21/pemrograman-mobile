@@ -74,6 +74,19 @@ class MyApp extends StatelessWidget {
       ],
     );
 
+    Widget textSection = Container(
+      padding: const EdgeInsets.all(32),
+      child: const Text(
+        'Carilah teks di internet yang sesuai '
+        'dengan foto atau tempat wisata yang ingin '
+        'Anda tampilkan. '
+        'Tambahkan nama dan NIM Anda sebagai '
+        'identitas hasil pekerjaan Anda. '
+        'Selamat mengerjakan 🙂.',
+        softWrap: true,
+      ),
+    );
+
     return MaterialApp(
       title: 'Flutter layout: Muhammad Bintang Sholu Firmansyah - 2141720101',
       home: Scaffold(
@@ -83,6 +96,7 @@ class MyApp extends StatelessWidget {
         body: Column(
           children: [
             titleSection,
+            textSection,
             buttonSection,
             // Tambahkan widget lain di sini sesuai kebutuhan aplikasi Anda.
           ],

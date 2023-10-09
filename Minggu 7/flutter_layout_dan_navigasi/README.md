@@ -205,3 +205,36 @@ Widget buttonSection = Row(
 Tambahkan variabel buttonSection ke dalam body seperti berikut:
 
 <br><img src='img/5.png' width='40%'><br>
+
+---
+
+### Praktikum 3: Implementasi text section
+Selesaikan langkah-langkah praktikum berikut ini dengan melanjutkan dari praktikum sebelumnya.
+#### **Langkah 1: Buat widget textSection**
+
+Tentukan bagian teks sebagai variabel. Masukkan teks ke dalam Container dan tambahkan padding di sepanjang setiap tepinya. Tambahkan kode berikut tepat di bawah deklarasi buttonSection:
+```
+Widget textSection = Container(
+  padding: const EdgeInsets.all(32),
+  child: const Text(
+    'Carilah teks di internet yang sesuai '
+    'dengan foto atau tempat wisata yang ingin '
+    'Anda tampilkan. '
+    'Tambahkan nama dan NIM Anda sebagai '
+    'identitas hasil pekerjaan Anda. '
+    'Selamat mengerjakan 🙂.',
+    softWrap: true,
+  ),
+);
+```
+Dengan memberi nilai softWrap = true, baris teks akan memenuhi lebar kolom sebelum membungkusnya pada batas kata.
+
+<br><img src='img/8.png' width='40%'><br>
+
+#### **Langkah 2: Tambahkan variabel text section ke body**
+Tambahkan widget variabel textSection ke dalam body seperti berikut:
+
+<br><img src='img/7.png' width='40%'><br>
+
+Output : 
+<br><img src='img/6.png' width='40%'><br>
