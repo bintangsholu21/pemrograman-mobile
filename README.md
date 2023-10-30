@@ -21,3 +21,4 @@ No Absen : 16
 |Week 6        |`'Quiz 1'`   | https://github.com/bintangsholu21/pemrograman-mobile/tree/main/Minggu%206/quiz1_pemrograman_mobile
 |Week 7        |`'Flutter - Layout dan Navigasi'`   | https://github.com/bintangsholu21/pemrograman-mobile/tree/main/Minggu%207/flutter_layout_dan_navigasi
 |Week 8        |`'UTS'`   | https://github.com/bintangsholu21/pemrograman-mobile/tree/main/Minggu%208/uts_pemrograman_mobile
+|Week 9        |`'Manajemen Plugin'`   | https://github.com/bintangsholu21/pemrograman-mobile/tree/main/Minggu%209/flutter_plugin_pubdev
